@@ -1,0 +1,27 @@
+body {
+    width: 100%;
+    margin: 0;
+
+    font-size: 14px;
+    text-align: center;
+}
+
+.container-logo {
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    margin: 0 0 20px 0;
+
+    color: #757c80;
+
+    .logo-middle {
+        height: 64px;
+        margin-bottom: 8px;
+    }
+
+    .logo-discription {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}

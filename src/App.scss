@@ -1,0 +1,40 @@
+.slide {
+  .backgroundImage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      width: 100%;
+      height: 100%;
+
+      background-image: url(./assets/Fld1LG8aYAYpJGY.jfif);
+      background-repeat: no-repeat;
+      background-position-x: 15%;
+      background-size: cover;
+      filter: blur(1px);
+
+      /*
+          animation: duration, timing-function, delay, iteration-count, direction, fill-mode, play-state, name
+      */
+      animation: 10s ease-in-out .5s infinite normal both backgroundImage;
+  }
+}
+
+@keyframes backgroundImage {
+  40% {
+      background-image: url(./assets/Fld1LG8aYAYpJGY.jfif);
+  }
+
+  50% {
+      background-image: url(./assets/FlUJs8PaUAE6bhg.jfif);
+  }
+
+  90% {
+      background-image: url(./assets/FlUJs8PaUAE6bhg.jfif);
+  }
+
+  100% {
+      background-image: url(./assets/Fld1LG8aYAYpJGY.jfif);
+  }
+}
