@@ -3,14 +3,23 @@ import { Outlet, useLocation } from "react-router-dom";
 import UnLoginDefault from "./default";
 import Slide from "./slide";
 
-import "./index.scss"
+import "./index.scss";
+import Logo from "../../components/logo";
 
 function UnLoginHome() {
-    const {pathname} =  useLocation()
-    return (<>
-        <Slide/>
-        {pathname === "/" ? <UnLoginDefault/> : <Outlet />}
-    </>)
+  const { pathname } = useLocation();
+  return (
+    <>
+      <Slide />
+      <div
+        style={{ height: pathname === "/signup" ? "438px" : "357px" }}
+        className="container-unLoginForm"
+      >
+        <Logo />
+        {pathname === "/" ? <UnLoginDefault /> : <Outlet />}
+      </div>
+    </>
+  );
 }
 
 export default UnLoginHome;

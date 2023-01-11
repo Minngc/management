@@ -6,9 +6,10 @@ import { useUserState } from "../hooks/useUserProfile";
 function Register() {
     const [userState] = useUserState()
     const routerMap = new Map()
-
-    routerMap.set("user", useRoutes(userPage));
-    routerMap.set("offline", useRoutes(unLoginPage));
+    const user =  useRoutes(userPage)
+    const unLogin = useRoutes(unLoginPage)
+    routerMap.set("user", user);
+    routerMap.set("offline",unLogin);
     return routerMap.get(userState);
 }
 
