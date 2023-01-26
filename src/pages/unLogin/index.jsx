@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import UnLoginDefault from "./default";
 import Slide from "./slide";
 
 import "./index.scss";
@@ -16,7 +15,9 @@ function UnLoginHome() {
         className="container-unLoginForm"
       >
         <Logo />
-        {pathname === "/" ? <UnLoginDefault /> : <Outlet />}
+        {/* {pathname === "/" ? <UnLoginDefault /> : */}
+         <Outlet />
+         {/* } */}
       </div>
     </>
   );

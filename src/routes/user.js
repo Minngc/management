@@ -1,15 +1,15 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
+const userPage = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/home" />,
+  },
+  {
+    path: "*",
+    element: <>404</>,
+  },
+]);
 
-const userPage = [
-    {
-        path: "/",
-        element: <Navigate to="/home" />,
-    }, {
-        path: "/home",
-        element: <></>,
-    }
-]
-
-export default userPage
+export default userPage;

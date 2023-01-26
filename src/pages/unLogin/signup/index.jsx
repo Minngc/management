@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Form } from "react-router-dom";
 
 function SignUp() {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setconfirmPass] = useState("");
   const [email, setEmail] = useState("");
   const canSignUp =
-    userName !== "" &&
+    username !== "" &&
     password !== "" &&
     password === confirmPass &&
     (email === "" ||
@@ -20,25 +20,24 @@ function SignUp() {
       <Link replace to="/login" className="btn-toLogin--small">
         登录
       </Link>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
+      <Form method="post">
         <input
-          value={userName}
+          value={username}
+          name="username"
           type="text"
           placeholder="请输入账号"
-          onChange={(e) => setUserName(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           value={email}
+          name="email"
           type="email"
           placeholder="请输入邮箱"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           value={password}
+          name="email"
           type="password"
           className="animation-enlarge"
           placeholder="请输入密码"
@@ -46,6 +45,7 @@ function SignUp() {
         />
         <input
           value={confirmPass}
+          name="passwordconfirm"
           type="password"
           className="animation-enlarge"
           placeholder="请请确认密码"
@@ -54,7 +54,7 @@ function SignUp() {
         <button disabled={!canSignUp} type="submit">
           注册
         </button>
-      </form>
+      </Form>
       <footer className="footer-welcome">
         <div>Join us!</div>
       </footer>

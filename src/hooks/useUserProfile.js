@@ -1,19 +1,12 @@
-import { TokenStore, userProfileStore, userStateStore } from "../recoil/userProfile";
+import { userProfileStore, userStateStore } from "../recoil/userProfile";
 import { useRecoilState } from "recoil";
 
 function useUserState() {
-  
-  return useRecoilState(userStateStore)
+  return useRecoilState(userStateStore);
 }
 
 function useUserProfile() {
-  return useRecoilState(userProfileStore)
+  return useRecoilState(userProfileStore);
 }
 
-function useToken() {
-
-  return useRecoilState(TokenStore)
-}
-
-
-export { useUserState, useToken, useUserProfile };
+export { useUserState, useUserProfile };

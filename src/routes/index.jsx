@@ -1,16 +1,14 @@
-import { useRoutes } from "react-router-dom";
 import userPage from "./user";
 import unLoginPage from "./unLogin";
-import { useUserState } from "../hooks/useUserProfile";
+import adminPage from "./admin";
 
-function Register() {
-    const [userState] = useUserState()
-    const routerMap = new Map()
-    const user =  useRoutes(userPage)
-    const unLogin = useRoutes(unLoginPage)
-    routerMap.set("user", user);
-    routerMap.set("offline",unLogin);
-    return routerMap.get(userState);
+const routerMap = new Map();
+routerMap.set("user", userPage);
+routerMap.set("offline", unLoginPage);
+routerMap.set("admin", adminPage);
+
+function Register(userState) {
+  return routerMap.get(userState);
 }
 
 export default Register;
