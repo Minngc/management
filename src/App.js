@@ -1,14 +1,22 @@
+import { useState } from "react";
+import { userStateContext, userProfileContext } from "./context/userProfile";
 import { RouterProvider } from "react-router-dom";
 import "./App.scss";
 import Register from "./routes";
-import { useUserState } from "./hooks/useUserProfile";
-import unLoginPage from "./routes/unLogin";
 
 function App() {
-  const [userState] = useUserState();
+  const [userState, setUserState] = useState(() => {
+    return localStorage.getItem("userState") ?? "offline";
+  });
+  const [userProfile, setUserProfile] = useState("");
+  console.log(userState);
   return (
     <>
-      <RouterProvider router={Register(userState)} />
+      <userProfileContext.Provider value={{ userProfile, setUserProfile }}>
+        <userStateContext.Provider value={{ userState, setUserState }}>
+          <RouterProvider router={Register(userState)} />
+        </userStateContext.Provider>
+      </userProfileContext.Provider>
     </>
   );
 }
