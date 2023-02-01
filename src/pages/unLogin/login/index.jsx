@@ -1,27 +1,31 @@
-import React, { useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Link, Form } from "react-router-dom";
 import { useActionData } from "react-router-dom";
-import { userStateContext } from "../../../context/userProfile";
+import { useAuth } from "../../../routes/Authprovider";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setUserState } = useContext(userStateContext);
+  const { login } = useAuth();
   const canLogin = username !== "" && password !== "";
   const actionData = useActionData();
-  if (actionData&&actionData?.status >= 200 && actionData?.status < 300) {
-    const res = actionData.data.data;
-    localStorage.setItem("Token", res.token);
-    switch (res.role) {
-      case 1:
-        setUserState("admin");
-        localStorage.setItem("userState", "admin");
-        break;
-      default:
-        setUserState("offline");
-        localStorage.setItem("userState", "offline");
+
+  useEffect(() => {
+    if (actionData && actionData.status >= 200 && actionData.status < 300) {
+      if (actionData.data.success) {
+        console.log(actionData);
+        const res = actionData.data.data;
+        login({
+          user: { username: res.userName, email: res.email, role: res.role },
+          token: res.token,
+        });
+      } else {
+        // [ ] 登录失败的错误处理
+        console.log(actionData);
+      }
     }
-  }
+  }, [actionData, login]);
+
   return (
     <>
       <Link replace to="/signup" className="btn-toSignUp--small">

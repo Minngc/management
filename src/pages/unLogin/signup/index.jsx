@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Link, Form } from "react-router-dom";
+import React, { useLayoutEffect, useState } from "react";
+import { Link, Form, useNavigate, useActionData } from "react-router-dom";
 
 function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setconfirmPass] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const actionData = useActionData();
   const canSignUp =
     username !== "" &&
     password !== "" &&
@@ -14,6 +16,16 @@ function SignUp() {
       /^([a-zA-Z\d][\w-]{2,})@(\w{2,})\.([a-z]{2,})(\.[a-z]{2,})?$/.test(
         email
       ));
+
+  console.log(actionData);
+  if (
+    actionData &&
+    actionData.data.status >= 200 &&
+    actionData.data.status < 300
+  ) {
+    console.log("注册成功");
+    navigate("/signup", { replace: true });
+  }
 
   return (
     <>

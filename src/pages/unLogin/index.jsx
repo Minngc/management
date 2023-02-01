@@ -1,12 +1,17 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Slide from "./slide";
+import { useAuth } from "../../routes/Authprovider";
 
 import "./index.scss";
 import Logo from "../../components/logo";
 
 function UnLoginHome() {
+  const { user } = useAuth();
   const { pathname } = useLocation();
+  if (user) {
+    return <Navigate to="/home" replace />;
+  }
   return (
     <>
       <Slide />
@@ -16,8 +21,8 @@ function UnLoginHome() {
       >
         <Logo />
         {/* {pathname === "/" ? <UnLoginDefault /> : */}
-         <Outlet />
-         {/* } */}
+        <Outlet />
+        {/* } */}
       </div>
     </>
   );

@@ -7,32 +7,44 @@ const AuthContext = createContext();
 
 /**
  * 该组件用户提供用户信息
- * @param {*} param
  * @returns
  */
 function AuthProvider() {
+  // setter 在设置时会一并存储 localStorage
   const [user, setUser] = useLocalStorage("profile", "");
-  const [token, setToken] = useLocalStorage("token", "");
+  const [, setToken] = useLocalStorage("token", "");
   const navigate = useNavigate();
 
   const login = useCallback(
+    /**
+     * 用于登录时存储数据
+     * @param {{user:{username:string,email:string,role:number},token:string}} data
+     * @returns
+     */
     async (data) => {
+      console.log("in")
       setUser(data.user);
-      setToken(data.Token);
+      console.log(data.user);
+      setToken(data.token);
       navigate("/home", { replace: true });
     },
     [navigate, setUser, setToken]
   );
 
+  /**
+   * 用于注销时清空数据
+   * @returns
+   */
   const logout = useCallback(async () => {
+    console.log("out")
     setUser(null);
     setToken(null);
     navigate("/", { replace: true });
   }, [navigate, setUser, setToken]);
 
   const value = useMemo(() => {
-    return { user, token, login, logout };
-  }, [token, user, login, logout]);
+    return { user, login, logout };
+  }, [user, login, logout]);
 
   return (
     <AuthContext.Provider value={value}>

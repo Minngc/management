@@ -7,11 +7,11 @@ import { useCallback, useState } from "react";
  * @returns
  */
 function useLocalStorage(key, defaultValue) {
-  const [value, setStoredValue] = useState(() => {
+  const [storedValue, setStoredValue] = useState(() => {
     try {
-      const storedValue = localStorage.getItem(key);
-      if (storedValue) {
-        return JSON.parse(storedValue);
+      const value = localStorage.getItem(key);
+      if (value) {
+        return JSON.parse(value);
       } else {
         localStorage.setItem(key, JSON.stringify(defaultValue));
         return defaultValue;
@@ -25,16 +25,19 @@ function useLocalStorage(key, defaultValue) {
    * 用于更新状态
    * @param {*} newValue
    */
-  const setValue = useCallback(() => (newValue) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(newValue));
-    } catch (err) {
-      // console.log(err)
-    }
-    setStoredValue(newValue);
-  }, [key]);
+  const setValue = useCallback(
+    (newValue) => {
+      try {
+        localStorage.setItem(key, JSON.stringify(newValue));
+      } catch (err) {
+        console.log(err);
+      }
+      setStoredValue(newValue);
+    },
+    [key]
+  );
 
-  return [value, setValue];
+  return [storedValue, setValue];
 }
 
 export { useLocalStorage };
