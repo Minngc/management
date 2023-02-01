@@ -11,15 +11,27 @@ const userRegist = function (username, password, email) {
   const formdate = new FormData();
   formdate.append("userName", username);
   formdate.append("password", password);
-  if (email !== "") {
-    formdate.append(email);
+  if (email) {
+    formdate.append(email, email);
   }
   return apis.post("/user/register", formdate);
 };
 
+/**
+ *
+ * @returns
+ */
 const getInfo = () => {
   return apis.get("/user/info");
 };
+
+/**
+ *
+ * @param {string} username 用户名
+ * @param {string} password 密码
+ * @param {string} email 邮箱
+ * @returns
+ */
 
 const editInfo = (username, password, email) => {
   const formData = new FormData();
