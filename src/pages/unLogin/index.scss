@@ -32,14 +32,14 @@
 
     font-weight: 700;
     line-height: 40px;
+    text-decoration: none;
+
+    cursor: pointer;
 
     transition: background 0.25s, transform 0.25s;
 
-    cursor: pointer;
-    text-decoration: none;
-
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
 
       transition: background 0.25s, transform 0.25s;
     }
@@ -89,9 +89,9 @@
   input {
     width: 280px;
     height: 40px;
-    border: 0;
     margin: 10px 0 0 0;
     padding: 0 18px;
+    border: 0;
     border-radius: 7px;
 
     background-color: rgba(0, 0, 0, 0.04);
@@ -102,7 +102,7 @@
     }
   }
   .animation-enlarge {
-    animation: 0.25s ease 0s 1 normal both enlarge;
+    animation: enlarge 0.25s ease 0s 1 normal both;
   }
 
   @keyframes enlarge {
@@ -121,18 +121,24 @@
     margin: 20px auto 10px auto;
     border: 0;
     border-radius: 20px;
+
     color: #ffffff;
     font-weight: 700;
 
     background-color: #0096fa;
+    cursor: pointer;
 
     transition: background 0.25s, transform 0.25s;
-    cursor: pointer;
+    &:disabled {
+      cursor: default;
+      opacity: 0.32;
+    }
 
     &:enabled:hover {
       background-color: #007dd1;
 
-      transform: scale(1.1);
+      transform: scale(1.05);
+
       transition: background 0.25s, transform 0.25s;
     }
   }
@@ -160,16 +166,17 @@
     color: #ffffff;
     font-weight: 700;
     line-height: 40px;
+    text-decoration: none;
 
     background-color: #0096fa;
-    text-decoration: none;
 
     transition: background 0.25s, transform 0.25s;
 
     &:hover {
       background-color: #007dd1;
 
-      transform: scale(1.1);
+      transform: scale(1.05);
+
       transition: background 0.25s, transform 0.25s;
     }
   }

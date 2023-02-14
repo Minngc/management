@@ -1,6 +1,7 @@
 import { useAuth } from "./Authprovider";
 import { Navigate, Outlet } from "react-router-dom";
 
+// 用于阻挡未登录用户
 function RoleLayout() {
   const { user } = useAuth();
   if (!user) {
@@ -10,6 +11,7 @@ function RoleLayout() {
   return <Outlet />;
 }
 
+// 用于阻挡无权限用户
 function AdminLayout() {
   const { user } = useAuth();
   if (user.role !== 1) {

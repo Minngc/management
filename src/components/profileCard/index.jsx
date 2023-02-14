@@ -1,17 +1,46 @@
-import avatar from "../../assets/avatar.jpg";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
-function ProfileCard(props) {
+import avatar from "../../assets/avatar.jpg";
+import "./index.scss";
+
+const ProfileCard = forwardRef((props, ref) => {
+  const containerRef = useRef(null);
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        top() {
+          return containerRef.current.offsetTop;
+        },
+        width() {
+          return containerRef.current.offsetWidth;
+        },
+        height() {
+          return containerRef.current.offsetHeight;
+        },
+        left() {
+          return containerRef.current.offsetLeft;
+        },
+      };
+    },
+    [containerRef]
+  );
   return (
-    <div className="container-profileCard">
+    <div
+      className="container-profileCard"
+      ref={containerRef}
+      onClick={props.onClick}
+    >
       <div className="avatar">
         <img width={40} height={40} src={avatar} alt="avatar"></img>
       </div>
       <div className="info">
         <span>{props.username}</span>
-        <span>{props.email ?? "未填写"}</span>
+        <span>{props.email ?? "-"}</span>
       </div>
     </div>
   );
-}
+});
 
 export default ProfileCard;
